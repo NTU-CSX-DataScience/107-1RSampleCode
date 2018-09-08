@@ -79,25 +79,7 @@ while(flag) {
   cat(paste(readInput(), "\n"))
   if(user.input %in% seq(1, 9)){
     user.input <- strtoi(user.input)
-    if (user.input == 1) {
-      checkValid(user.input)
-    } else if (user.input == 2) {
-      checkValid(user.input)
-    } else if (user.input == 3) {
-      checkValid(user.input)
-    } else if (user.input == 4) {
-      checkValid(user.input)
-    } else if (user.input == 5) {
-      checkValid(user.input)
-    } else if (user.input == 6) {
-      checkValid(user.input)
-    } else if (user.input == 7) {
-      checkValid(user.input)
-    } else if (user.input == 8) {
-      checkValid(user.input)
-    } else if (user.input == 9) {
-      checkValid(user.input)
-    }
+    checkValid(user.input)
   } else if (user.input == "exit") {
     cat("Bye-Bye!!\n")
     break

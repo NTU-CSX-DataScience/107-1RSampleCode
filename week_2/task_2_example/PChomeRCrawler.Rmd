@@ -1,0 +1,28 @@
+---
+title: "RCrawler"
+author: "Pecu"
+date: "2018年3月2日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## RCrawler
+
+```{r RCrawler}
+library(httr)
+
+url <- "http://ecshweb.pchome.com.tw/search/v3.3/all/results?q=sony&page=1&sort=rnk/dc"
+res = GET(url)
+res_json = content(res)
+raw = (data.frame(do.call(rbind,res_json$prods)))
+```
+
+## Show Results
+
+```{r Table}
+library(knitr)
+kable(raw)
+```

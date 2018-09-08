@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Crawler</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Web Crawler">
+  <meta name="author" content="Bigmoumou">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Web Crawler</h1>
+    <h2>生活市集</h2>
+    <p>Bigmoumou<br/>NTU Econ</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>分享主軸 :</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>爬取生活市集商品資訊</h3>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Target Website : 生活市集</h2>
+  </hgroup>
+  <article data-timings="">
+    <iframe src="https://www.buy123.com.tw" height=600 width=800></iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>生活市集爬蟲思路 :</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>● 方法 1 :
+由於該網站所有商品都在首頁，只要不斷向下捲就會出現，
+但因為沒有捲到的商品爬不到，故第一個想法是透過動態捲動捲到底(約1hr)，
+再把資料 parse 下來一次抓完。
+</code></pre>
+
+<pre><code>● 缺點 : 
+很容易漏抓，像下捲動過多時(過1/5)就會開始出現一些商品並沒有被讀入，
+總商品約 3500 件，通常只抓的到 1800 ~ 2500 的區間。
+</code></pre>
+
+<pre><code>● 方法 2 : (也是使用課堂上教的基本方法!)
+尋找所有商品的 url，這樣絕對不會漏抓，只是時間上可能要做些處理。
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>生活市集爬蟲流程 :</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>● Input Necessary Packages : 
+</code></pre>
+
+<pre><code class="r">library(httr)     # for web crawler
+library(RCurl)    # for web crawler
+library(XML)      # for web crawler
+library(gsubfn)   # for regular expression
+</code></pre>
+
+<pre><code>● Set target URL : 
+</code></pre>
+
+<pre><code class="r"># live market&#39;s url 
+targeturl &lt;- &quot;https://www.buy123.com.tw/site&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>生活市集爬蟲流程 :</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>● 將生活市集首頁的資訊 parse 下來 :
+</code></pre>
+
+<pre><code class="r">res &lt;- getURL(targeturl, encoding=&quot;utf-8&quot;)
+res &lt;- htmlParse(res)
+res
+</code></pre>
+
+<pre><code>{xml_document}
+&lt;div class=&#39;\&quot;user-rating\&quot;&#39;&gt;
+&lt;span class=&#39;\&quot;rating-star\&quot;&#39;&gt;&lt;span class=&#39;\&quot;fa&#39; fa-lg gold fa-star&gt;&lt;/span&gt;&lt;span class=&#39;\&quot;fa...
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>尋找資料所在地 :</h2>
+  </hgroup>
+  <article data-timings="">
+    <iframe src="https://www.buy123.com.tw" height=600 width=800></iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>觀察 xpath 規律 :</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>● 前幾項商品的 xpath 如下，很明顯能看出規律 :
+</code></pre>
+
+<pre><code>//*[@id=&quot;container&quot;]/div[4]/section[2]/a[1]/figure/figcapion/h3
+//*[@id=&quot;container&quot;]/div[4]/section[2]/a[2]/figure/figcapion/h3
+//*[@id=&quot;container&quot;]/div[4]/section[2]/a[3]/figure/figcapion/h3
+...
+//*[@id=&quot;container&quot;]/div[4]/section[2]/a[n]/figure/figcapion/h3
+</code></pre>
+
+<pre><code>這邊我大膽猜測商品資訊都放在下方路徑的子層的 a 標籤:
+`//*[@id=&quot;container&quot;]/div[4]/section[2]//a`
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>抓取所有商品 url :</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>● 抓取前述 xpath 下的 href(鏈接) :
+</code></pre>
+
+<pre><code class="r">xpath &lt;- &#39;//*[@id=&quot;container&quot;]/div[4]/section[2]//a&#39;
+urls &lt;- xpathSApply(res, path=xpath, xmlGetAttr, &#39;href&#39;)
+urls
+</code></pre>
+
+<pre><code>[1] &quot;/site/sku/2042380/%E5%8A%A0%E7%B2%97%E4%B8%8D%E9%8...&quot;
+[2] &quot;/site/sku/2039310/%E5%BA%B7%E4%B9%83%E9%A6%A8Hi-wat...&quot;
+...
+...
+[1000] &quot;/site/item/123284/%E7%8E%87%E6%80%A7%E8%96%84%E6...&quot;     
+[ reached getOption(&quot;max.print&quot;) -- omitted 3793 entries ]
+</code></pre>
+
+<pre><code>可以看到已經抓到個商品的 href 資訊，總共有 3000 多筆商品。
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>整理出所有商品真正的 URL :</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>● 使用 paste0 方法整理出所有商品真正的 url :
+</code></pre>
+
+<pre><code class="r">tmp = &quot;https://www.buy123.com.tw&quot;
+urls &lt;- paste0(tmp, urls)
+urls
+</code></pre>
+
+<pre><code>[1] &quot;/site/sku/2042380/%E5%8A%A0%E7%B2%97%E4%B8%8D%E9...&quot;
+[2] &quot;/site/sku/2039310/%E5%BA%B7%E4%B9%83%E9%A6%A8Hi-...&quot;                   
+...
+[1000] &quot;https://www.buy123.com.tw/site/item/129849/%E...&quot;               
+[ reached getOption(&quot;max.print&quot;) -- omitted 3798 entries ]
+</code></pre>
+
+<pre><code>所有商品的 url 都整理完成了 :)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>開始進入各商品網頁把資料爬下來囉 !</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>● 由於在 R 中能避免使用迴圈就避免，取而代更多使用的是 apply 家族。
+</code></pre>
+
+<pre><code>由於後續每個網頁都會重複以下動作，故先寫成 function 以簡化代碼數。
+</code></pre>
+
+<pre><code class="r"># set function for lapply :
+# 詳細說明如下 :
+webpage_parser &lt;- function(x, xpath){
+  # 進到各商品 url 把網頁資訊 parse 下來
+  res_tmp &lt;- getURL(x, encoding=&quot;utf-8&quot;)
+  res_tmp &lt;- htmlParse(res_tmp, encoding=&quot;UTF-8&quot;)
+  # 使用後續指定的 xpath 取得文字 (text) 資料
+  textdata &lt;- xpathSApply(res_tmp, path = xpath, xmlValue)
+}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>開始進入各商品網頁把資料爬下來囉 !</h2>
+  </hgroup>
+  <article data-timings="">
+    <div style='text-align: left;'>
+    <img height='500' src='.\img\p1.png' />
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>開始進入各商品網頁把資料爬下來囉 !</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>這邊僅抓取商品名稱(title)和商品銷售量(sales)為例子
+</code></pre>
+
+<pre><code class="r"># 抓取商品名稱 :
+xpath=&#39;//*[@id=&quot;item-main-content&quot;]/figure/figcaption/h1&#39;
+titles &lt;- unlist(lapply(urls[1:10], function(x) webpage_parser(x, xpath=xpath)))
+# 抓取商品購買人數 :
+xpath=&#39;//*[@id=&quot;item-main-content&quot;]/div/div[6]/div[2]/span&#39;
+sales &lt;- unlist(lapply(urls[1:10], function(x) webpage_parser(x, xpath=xpath)))
+# 先以 vector 形式儲存資料，後續再做 split 處理 :
+webdata &lt;- paste(titles, sales, sep=&#39;__&#39;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>等待資料爬下來... <code>\(^.^)/</code></h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>上述 code 在 i7-2600 單線程下執行時間大約需要 : 1.5 hr
+</code></pre>
+
+<pre><code>如果用 R 的 for loop 的話，大約需要到 &gt;= 2.5 hr 的時間 =.=
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>等待資料爬下來... <code>\(^.^)/</code></h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>上述 code 在 i7-2600 單線程下執行時間大約需要 : 1.5 hr
+</code></pre>
+
+<pre><code>如果用 R 的 for loop 的話，大約需要到 &gt;= 2.5 hr 的時間 =.=
+</code></pre>
+
+<div style='text-align: left;'>
+    <img height='300' src='.\img\catwait.png' />
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Q : 課後小任務</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>請大家抓取任意 100 筆資料的 titles、sales 以及 prices !
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='分享主軸 :'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Target Website : 生活市集'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='生活市集爬蟲思路 :'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='生活市集爬蟲流程 :'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='生活市集爬蟲流程 :'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='尋找資料所在地 :'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='觀察 xpath 規律 :'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='抓取所有商品 url :'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='整理出所有商品真正的 URL :'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='開始進入各商品網頁把資料爬下來囉 !'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='開始進入各商品網頁把資料爬下來囉 !'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='開始進入各商品網頁把資料爬下來囉 !'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='等待資料爬下來... <code>\(^.^)/</code>'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='等待資料爬下來... <code>\(^.^)/</code>'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Q : 課後小任務'>
+         15
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

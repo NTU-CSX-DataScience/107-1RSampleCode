@@ -12,6 +12,6 @@
 
 | Date   | W    | Link                                                           |
 | --:    | --   | --                                                             |
-| 09/13  |  1   | https://github.com/NTU-CSX-DataScience/106-2RSampleCode/tree/master/week_1 |
+| 09/13  |  1   | https://github.com/NTU-CSX-DataScience/107-1RSampleCode/tree/master/week_1 |
 
 

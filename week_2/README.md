@@ -14,7 +14,7 @@
     - hw_2_crawler_example
         - PChomeRCrawler.html
         - PChomeRCrawler.r
-        - PChomeRCrawler.Rmd
+        - PChomeRCrawler.Rmd ([作業參考](https://howardchao.github.io/CSX_RProject_Spring_2018/week_2/task_2_self_practice/R_crawler_rvest_practice.html))
     - hw_2_extra_OOXX_game.R
 
 - week_2任務

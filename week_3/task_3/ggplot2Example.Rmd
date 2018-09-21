@@ -1,0 +1,55 @@
+---
+title: "Data Visualization"
+author: "Pecu"
+date: "2018年3月13日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+diamonds
+```
+
+# 單變數：類別型
+```{r}
+ggplot(data = diamonds, aes(x = cut)) +
+geom_bar(fill = "lightblue", colour = "black")
+```
+
+# 單變數：連續型
+```{r}
+ggplot(data = diamonds, aes(x = price)) +
+geom_histogram()
+```
+
+
+# 雙變數：連續 vs 連續
+```{r}
+ggplot(data = diamonds, aes(x = table, y=depth)) +
+geom_point()
+```
+
+# 雙變數：離散 vs 連續
+```{r}
+ggplot(diamonds, aes(x=clarity, y=depth)) +
+geom_boxplot()
+```
+
+# 多變量：鑽石銷售總體的關係
+```{r}
+library(ggplot2)
+library(GGally)
+library(scales)
+library(memisc)
+
+# 從數據集獲取10000個樣本數據進行分析
+set.seed(20022012)
+diamond_samp <- diamonds[sample(1:length(diamonds$price), 10000), ]
+ggpairs(diamond_samp,lower= list(continuous = wrap("points", shape = I('.'))),
+        upper = list(combo = wrap("box", outlier.shape = I('.'))))
+```
+

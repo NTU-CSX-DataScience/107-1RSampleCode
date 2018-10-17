@@ -1,0 +1,12 @@
+name: poetry_analysis
+title: poetry_analysis
+username:
+account: lanw868
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 478964
+bundleId: 1612524
+url: https://lanw868.shinyapps.io/poetry_analysis/
+when: 1538200009.31038
+asMultiple: FALSE
+asStatic: FALSE

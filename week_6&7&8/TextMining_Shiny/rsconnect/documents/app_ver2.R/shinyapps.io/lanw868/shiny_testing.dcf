@@ -1,0 +1,12 @@
+name: shiny_testing
+title: shiny_testing
+username:
+account: lanw868
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 466424
+bundleId: 1612382
+url: https://lanw868.shinyapps.io/shiny_testing/
+when: 1538190814.39182
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,5 +1,7 @@
 # 資料科學程式設計 :computer:
 
+- [期中報告共評表 15%](https://docs.google.com/spreadsheets/d/1VA37mMMf4rbCQ06hvwAjUwdaD_HLS-BkkB2cd6ZipFc/edit?usp=sharing)
+
 - [課程大綱](https://nol.ntu.edu.tw/nol/coursesearch/print_table.php?course_id=H03%2004010&class=&dpt_code=H020&ser_no=21068&semester=107-1&lang=CH)
 
 - [資料科學程式設計NTUCOOL](https://cool.ntu.edu.tw/courses/73)

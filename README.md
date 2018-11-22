@@ -13,6 +13,9 @@
 - 修課名單：
 
     [羅際禎](https://github.com/B04902039/DataScienceProgramming2018spring)、[陳廷安](https://github.com/TimAgro/Data_Science_R_NTU)、[趙冠豪](https://github.com/HowardChao/CSX_RProject_Spring_2018)；期末專題：[台北市房價租金行情計算](https://docs.google.com/presentation/d/e/2PACX-1vTT2IujnU2VsvI7UD3EK_hBrZL7ZHoCHvCHVL2Fu1Lt_rnF2nd6fAN67ijQu-tJjznVYUubAvLsPPz0/pub?start=false&loop=false&delayms=3000)
+    
+    [凃皓瑋](https://github.com/teric1024/107-1-R-data-analysis-course)、[廖宣雅](https://github.com/tallya851109/CSX_RProject)、[張立心](https://github.com/54heart/CS-Course)
+    
 
 | Date   | W    | Link                                                           |
 | --:    | --   | --                                                             |

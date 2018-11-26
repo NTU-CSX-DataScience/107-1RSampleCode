@@ -1,4 +1,4 @@
-### [課程投影片](https://ppt.cc/f6TwSx)
+### [課程投影片](https://ppt.cc/fxQ79x)
 
 ## Data Details
 1. 英文新聞資料：path/news.txt

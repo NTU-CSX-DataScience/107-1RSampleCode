@@ -1,5 +1,3 @@
-## Python_進階軟體開發專題
-
 ### [課程投影片](https://ppt.cc/f6TwSx)
 
 ## Data Details

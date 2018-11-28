@@ -10,15 +10,32 @@
 - [資料科學程式設計GitHub](https://github.com/NTU-CSX-DataScience/107-1RSampleCode)
 
 
-- 修課名單：
-
-    [羅際禎](https://github.com/B04902039/DataScienceProgramming2018spring)、[陳廷安](https://github.com/TimAgro/Data_Science_R_NTU)、[趙冠豪](https://github.com/HowardChao/CSX_RProject_Spring_2018)；期末專題：[台北市房價租金行情計算](https://docs.google.com/presentation/d/e/2PACX-1vTT2IujnU2VsvI7UD3EK_hBrZL7ZHoCHvCHVL2Fu1Lt_rnF2nd6fAN67ijQu-tJjznVYUubAvLsPPz0/pub?start=false&loop=false&delayms=3000)
+- 修課同學 GitHub 連結：
     
-    [凃皓瑋](https://github.com/teric1024/107-1-R-data-analysis-course)、[廖宣雅](https://github.com/tallya851109/CSX_RProject)、[張立心](https://github.com/54heart/CS-Course)
+    [凃皓瑋](https://github.com/teric1024/107-1-R-data-analysis-course)、[廖宣雅](https://github.com/tallya851109/CSX_RProject)、[張立心](https://github.com/54heart/CS-Course)、[洪世豪](https://github.com/HaroldHong/Data-Science-and-programing)、
+    [丘銳斌](https://github.com/mlalpha/ntu-csx-4001-data-science_107)、[余采蘋](https://github.com/crystal320yu/NTU_COOL)、[吳睿得](https://github.com/bryan051003/csx_rproject)、[廖祐萱](https://github.com/x666772/CSX_Lyhs)、
+    [張在然](https://github.com/dadalakun25/R-mumi)、[張育堂](https://github.com/b05611038/DataScience_R)、[張靖雍](https://github.com/goodjob0823/CSX_RProject_Fall_2018)、[彭翊庭](https://github.com/yitingpeng/datascience)、
+    [易行祐](https://github.com/josephyi0317/NTU-CSX-DataScience)、[梁舒翔](https://github.com/ShuHsiangLiang/CSX4001/)、[洪培洛](https://github.com/perilium/NTU-CSX4001/)、[游博任](https://github.com/perilium/NTU-CSX4001)、
+    [莊博翰](https://github.com/gordon0813/R-learning-map/)、[袁靖淳](https://github.com/gordon0813/R-learning-map)、[許家榿](https://github.com/edward1997104/NTU-CSX-DataScience/)、[賴昱堯](https://github.com/richlay/Rlanguage/)、
+    [郭洸丞](https://github.com/qk0926/NTU_data_course_2018)、[鄭鈞瀚](https://github.com/FawenYo/NTU_CSX4001)、[陳亮瑜](https://github.com/LouieChen16/NTU_CSX_DataScience)、[陳佳筠](https://github.com/Jia-YunChen/CS-X_R)、
+    [陳奕舟](https://github.com/silvercraft/CS_X)、[黃琬容](https://github.com/graduatecrisis/CSX-Data-Science/)
     
 
 | Date   | W    | Link                                                           |
 | --:    | --   | --                                                             |
-| 09/13  |  1   | https://github.com/NTU-CSX-DataScience/107-1RSampleCode/tree/master/week_1 |
+| 09/13  |  1   | [連結](https://docs.google.com/presentation/d/e/2PACX-1vSxbTW9Qm9uLwiFrvPxFaUIHFtBV4IUzhUJ1BbKuKjjzkAEhFxb-YsXjqOosz6DKBE70ybc3fFjONsg/pub?start=false&loop=false&delayms=3000&slide=id.p) |
+| 09/20  |  2   |[連結](https://docs.google.com/presentation/u/1/d/e/2PACX-1vSj9t4H-W60Tnfxx38VWq3dmSd4LueGToNmPBnfXIc0hMO0QMpmiEMIEVQCwA3WI9S-pP3rOF9Cl_w4/pub?start=false&loop=false&delayms=3000)|
+| 09/27  |  3   |[連結](https://docs.google.com/presentation/d/e/2PACX-1vS1Swqv6pMD5jHKEkCiUevDZ0FG7EEStYdZX4V8ofKFqOBSez_48GiDUemYaUF5XIfoRU511lR2i1U4/pub?start=false&loop=false&delayms=3000&slide=id.p)|
+| 10/04  |  4   |[連結](https://docs.google.com/presentation/d/1ILGVLyiJSwfIa7hz57HiESPGhuPgfQ0WCNwXmGuE4l4/edit#slide=id.p)|
+| 10/11  |  5   |[連結](https://docs.google.com/presentation/d/e/2PACX-1vTqrTR9SUpT-wxHAptoWpBaX5zjthK0W62iVailUiFE-nxTFVzlF_f5MlIlrcnomTatknuxcFYFzttB/pub?start=false&loop=false&delayms=3000&slide=id.p)|
+| 10/18  |  6   |[連結](https://docs.google.com/presentation/d/e/2PACX-1vSwqoaEvqtk-TxeE07nkIEmgfvd_RyqMOHo_ZCd0GdikkS7EDr_mKdU58r7FN8VgU7H5unJkwHN1cJh/pub?start=false&loop=false&delayms=3000&slide=id.g4273d10c0f_0_0)|
+| 10/25  |  7   |[連結](https://docs.google.com/presentation/u/1/d/e/2PACX-1vR2FbpN9mvJoNiZyfgQypTWfQmKxfIxj3og-VJvHXHgcBP4hkahAYaVjyDu7PL8txpoTdH4FUqYQiYD/pub?start=false&loop=false&delayms=3000)|
+| 11/01  |  8   |[DPS GitHub 連結](https://github.com/dspim)|
+| 11/08  |  9   | [資策會 ChatBox 演講](https://docs.google.com/document/d/1g1Plzir86OvJm2MSGXgk1g8aLXhc9_xNIUglwUt6qg0/edit)|
+| 11/15  |  10   |作業報告|
+| 11/22  |  11   |作業報告|
+| 11/29  |  12   |[連結](https://docs.google.com/presentation/d/e/2PACX-1vQ-XXZlyaoNTfx1l7FlPj-KgESdH651LBQV4mDJnTU3vjn32Me-i3gCqMTTMypjpoJFtiCEfVEUoNsM/pub?start=false&loop=false&delayms=3000&slide=id.g494f19b90a_0_0)|
+
+
 
 
